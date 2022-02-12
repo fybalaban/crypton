@@ -21,4 +21,17 @@ public static class KeyGeneration
         generator.GetBytes(randomBytes);
         return randomBytes;
     }
+
+    /// <summary>
+    /// Password Based Key Derivation Function. Resulting byte array's length depends on used hash algorithm
+    /// </summary>
+    /// <param name="password">Password in bytes</param>
+    /// <param name="salt">Salt in bytes, use of a cryptographically secure salt is advised</param>
+    /// <param name="repetition">Count of hashing the byte array will get applied</param>
+    /// <param name="method">Hashing method to be used</param>
+    /// <returns>Returns a byte array as the key to be used in encryption or decryption</returns>
+    public static byte[] Pbkdf2(byte[] password, byte[] salt, int repetition, HashFunctions.HashFunction method)
+    {
+        throw new NotImplementedException();
+    }
 }
