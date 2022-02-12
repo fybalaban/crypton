@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using crypton;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
 
@@ -29,6 +31,85 @@ namespace crypton.Tests
             }
 
             Assert.AreEqual(5, KeyGeneration.GetRandomBytes(5).Length);
+        }
+
+        [TestMethod()]
+        public void Pbkdf2Test()
+        {
+            byte[] validPassword = { 1, 2, 3, 4, 5 };
+            byte[] invalidPassword1 = {};
+            byte[] invalidPassword2 = null;
+            byte[] validSalt = { 1, 2, 3, 4, 5 };
+            byte[] invalidSalt1 = { };
+            byte[] invalidSalt2 = null;
+            int validRepetition = 1;
+            int invalidRepetition1 = 0;
+            int invalidRepetition2 = -1;
+
+            try
+            {
+                KeyGeneration.Pbkdf2(invalidPassword1, validSalt, validRepetition, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentOutOfRangeException);
+            }
+
+            try
+            {
+                KeyGeneration.Pbkdf2(invalidPassword2, validSalt, validRepetition, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentNullException);
+            }
+
+            try
+            {
+                KeyGeneration.Pbkdf2(validPassword, invalidSalt1, validRepetition, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentOutOfRangeException);
+            }
+            
+            try
+            {
+                KeyGeneration.Pbkdf2(validPassword, invalidSalt2, validRepetition, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentNullException);
+            }
+
+            try
+            {
+                KeyGeneration.Pbkdf2(validPassword, validSalt, invalidRepetition1, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentOutOfRangeException);
+            }
+            
+            try
+            {
+                KeyGeneration.Pbkdf2(validPassword, validSalt, invalidRepetition2, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentOutOfRangeException);
+            }
+
+            Exception thisShouldBeNull = null;
+            try
+            {
+                KeyGeneration.Pbkdf2(validPassword, validSalt, validRepetition, HashFunctions.HashFunction.Sha1);
+            }
+            catch (Exception exception)
+            {
+                thisShouldBeNull = exception;
+            }
+            Assert.AreEqual(null, thisShouldBeNull);
         }
     }
 }
