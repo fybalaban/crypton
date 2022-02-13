@@ -11,6 +11,16 @@ public class HashFunctions
     }
 
     /// <summary>
+    /// Returns exact HashAlgorithmName instance of given HashFunction
+    /// </summary>
+    /// <param name="name">Hash function to get HashAlgorithmName instance of</param>
+    /// <returns></returns>
+    internal static HashAlgorithmName FromHashFunction(HashFunction name)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
     /// Hashes supplied byte array using the given hash function
     /// </summary>
     /// <param name="content">Byte array to be hashed</param>
