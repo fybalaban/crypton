@@ -14,10 +14,19 @@ public class HashFunctions
     /// Returns exact HashAlgorithmName instance of given HashFunction
     /// </summary>
     /// <param name="name">Hash function to get HashAlgorithmName instance of</param>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when given enum name is not in range</exception>
     /// <returns></returns>
     public static HashAlgorithmName FromHashFunction(HashFunction name)
     {
-        throw new NotImplementedException();
+        return name switch
+        {
+            HashFunction.Md5 => HashAlgorithmName.MD5,
+            HashFunction.Sha1 => HashAlgorithmName.SHA1,
+            HashFunction.Sha256 => HashAlgorithmName.SHA256,
+            HashFunction.Sha384 => HashAlgorithmName.SHA384,
+            HashFunction.Sha512 => HashAlgorithmName.SHA512,
+            _ => throw new ArgumentOutOfRangeException(nameof(name), "Enum is not in range")
+        };
     }
 
     /// <summary>
