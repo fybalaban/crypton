@@ -35,6 +35,15 @@ namespace crypton.Tests
         [TestMethod()]
         public void FromHashFunctionTest()
         {
+            try
+            {
+                HashFunctions.FromHashFunction((HashFunctions.HashFunction)999);
+            }
+            catch (Exception exception)
+            {
+                Assert.IsTrue(exception is ArgumentOutOfRangeException);
+            }
+
             Assert.AreEqual(HashAlgorithmName.MD5, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Md5));
             Assert.AreEqual(HashAlgorithmName.SHA1, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Sha1));
             Assert.AreEqual(HashAlgorithmName.SHA256, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Sha256));
