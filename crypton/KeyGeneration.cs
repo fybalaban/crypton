@@ -31,8 +31,24 @@ public static class KeyGeneration
     /// <param name="length">Length of resulting key's byte array</param>
     /// <param name="method">Hashing method to be used</param>
     /// <returns>Returns a byte array as the key to be used in encryption or decryption</returns>
+    /// <exception cref="ArgumentNullException">Thrown when password or salt is null</exception>
+    /// <exception cref="ArgumentOutOfRangeException">Thrown when password or salt arrays contain nothing, or when repetition and length are less than 1</exception>
     public static byte[] Pbkdf2(byte[] password, byte[] salt, int repetition, int length, HashFunctions.HashFunction method)
     {
-        throw new NotImplementedException();
+        if (password is null)
+            throw new ArgumentNullException(nameof(password), "Input password's byte array cannot be null");
+        if (salt is null)
+            throw new ArgumentNullException(nameof(salt), "Salt's byte array cannot be null");
+        if (password.Length <= 0)
+            throw new ArgumentOutOfRangeException(nameof(password), "Input password's byte array length cannot be less than 1");
+        if (salt.Length <= 0)
+            throw new ArgumentOutOfRangeException(nameof(salt), "Salt's byte array length cannot be less than 1");
+        if (repetition is <= 0)
+            throw new ArgumentOutOfRangeException(nameof(repetition), "Repetition count cannot be less than 1");
+        if (length <= 0)
+            throw new ArgumentOutOfRangeException(nameof(length), "Length of resulting byte array cannot be less than 1");
+
+        using Rfc2898DeriveBytes key = new(password, salt, repetition, HashFunctions.FromHashFunction(method));
+        return key.GetBytes(length);
     }
 }
