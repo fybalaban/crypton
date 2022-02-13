@@ -1,6 +1,4 @@
-﻿using crypton;
-
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
 
@@ -87,14 +85,6 @@ namespace crypton.Tests
             try
             {
                 KeyGeneration.Pbkdf2(validPassword, validSalt, invalidRepetition1, 160, HashFunctions.HashFunction.Sha1);
-            }
-            catch (Exception exception)
-            {
-                Assert.IsTrue(exception is ArgumentOutOfRangeException);
-            }
-            
-            try
-            {
                 KeyGeneration.Pbkdf2(validPassword, validSalt, invalidRepetition2, 160, HashFunctions.HashFunction.Sha1);
             }
             catch (Exception exception)
