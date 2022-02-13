@@ -15,7 +15,7 @@ public class HashFunctions
     /// </summary>
     /// <param name="name">Hash function to get HashAlgorithmName instance of</param>
     /// <returns></returns>
-    internal static HashAlgorithmName FromHashFunction(HashFunction name)
+    public static HashAlgorithmName FromHashFunction(HashFunction name)
     {
         throw new NotImplementedException();
     }
