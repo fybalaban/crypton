@@ -1,6 +1,9 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using crypton;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using System;
+using System.Security.Cryptography;
 
 namespace crypton.Tests
 {
@@ -27,6 +30,16 @@ namespace crypton.Tests
 
             Assert.AreEqual("2c74fd17edafd80e8447b0d46741ee243b7eb74dd2149a0ab1b9246fb30382f27e853d8585719e0e67cbda0daa8f51671064615d645ae27acb15bfb1447f459b", HashFunctions.PerformHash("Hello World", HashFunctions.HashFunction.Sha512));
             Assert.AreEqual("e1c112ff908febc3b98b1693a6cd3564eaf8e5e6ca629d084d9f0eba99247cacdd72e369ff8941397c2807409ff66be64be908da17ad7b8a49a2a26c0e8086aa", HashFunctions.PerformHash("Hello World\n", HashFunctions.HashFunction.Sha512));
+        }
+
+        [TestMethod()]
+        public void FromHashFunctionTest()
+        {
+            Assert.AreEqual(HashAlgorithmName.MD5, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Md5));
+            Assert.AreEqual(HashAlgorithmName.SHA1, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Sha1));
+            Assert.AreEqual(HashAlgorithmName.SHA256, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Sha256));
+            Assert.AreEqual(HashAlgorithmName.SHA384, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Sha384));
+            Assert.AreEqual(HashAlgorithmName.SHA512, HashFunctions.FromHashFunction(HashFunctions.HashFunction.Sha512));
         }
     }
 }
