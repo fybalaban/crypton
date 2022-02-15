@@ -36,6 +36,49 @@ public class Aes
 
     private readonly System.Security.Cryptography.Aes _aes;
 
+    /// <summary>
+    /// Creates an instance of <see langword="crypton.SymmetricAlgorithm.Aes"/> with default properties
+    /// </summary>
+    public Aes()
+    {
+        _aes = System.Security.Cryptography.Aes.Create();
+
+        Padding = PaddingMode.PKCS7;
+        Mode = CipherMode.CBC;
+        SetFeedbackSize(128);
+
+        _aes.Padding = Primitives.FromCrypton(Padding);
+        _aes.Mode = Primitives.FromCrypton(Mode);
+        _aes.FeedbackSize = FeedbackSize;
+        _aes.GenerateKey();
+        _aes.GenerateIV();
+    }
+
+    /// <summary>
+    /// Creates an instance of <see langword="crypton.SymmetricAlgorithm.Aes"/> with default properties, using supplied key and initalization vector
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="iv"></param>
+    public Aes(byte[] key, byte[] iv)
+    {
+        if (!IsKeyValid(key))
+            throw new ArgumentException("Supplied key byte array is not a valid key for use in AES cryptographic operation", nameof(key));
+        if (!IsInitVectorValid(iv))
+            throw new ArgumentException("Supplied IV byte array is not a valid IV for use in AES cryptographic operation", nameof(iv));
+
+        _aes = System.Security.Cryptography.Aes.Create();
+
+        Padding = PaddingMode.PKCS7;
+        Mode = CipherMode.CBC;
+        SetFeedbackSize(128);
+
+        _aes.Padding = Primitives.FromCrypton(Padding);
+        _aes.Mode= Primitives.FromCrypton(Mode);
+        _aes.FeedbackSize = FeedbackSize;
+        _aes.Key = key;
+        _aes.IV = iv;
+    }
+
     #region Property Setter Methods
     /// <summary>
     /// Sets the symmetric key property (<see langword="Aes.Key"/>) to supplied byte array if byte array is a valid key, otherwise does nothing
