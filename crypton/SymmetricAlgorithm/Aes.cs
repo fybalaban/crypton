@@ -2,6 +2,7 @@
 
 public class Aes
 {
+    #region Properties
     /// <summary>
     /// Gets or sets the padding mode of the cryptographic operation. Default is <see langword="PaddingMode.PKCS7"/>
     /// </summary>
@@ -31,9 +32,11 @@ public class Aes
     /// Gets the Initialization Vector used by this instance. Call SetIV() to set this property
     /// </summary>
     public byte[] IV => _aes.IV;
+    #endregion
 
     private readonly System.Security.Cryptography.Aes _aes;
 
+    #region Property Setter Methods
     /// <summary>
     /// Sets the symmetric key property (<see langword="Aes.Key"/>) to supplied byte array if byte array is a valid key, otherwise does nothing
     /// </summary>
@@ -81,7 +84,9 @@ public class Aes
     {
         throw new NotImplementedException();
     }
+    #endregion
 
+    #region Public Cryptographic Operation Methods
     /// <summary>
     /// Trys to encrypt the content of byte array according to current <see langword="Mode"/> and <see langword="Padding"/> properties. This method does not throw exceptions
     /// </summary>
@@ -143,4 +148,5 @@ public class Aes
     {
         throw new NotImplementedException();
     }
+    #endregion
 }
