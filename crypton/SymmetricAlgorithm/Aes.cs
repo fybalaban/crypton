@@ -133,4 +133,26 @@ public class Aes
         throw new NotImplementedException();
     }
     #endregion
+
+    #region Public Cryptographic Support Methods
+    /// <summary>
+    /// Checks if supplied byte array is a valid key for use in AES cryptographic operation
+    /// </summary>
+    /// <param name="key">Byte array to be checked</param>
+    /// <returns>Returns <see langword="true"/> if key is valid, otherwise returns false</returns>
+    public static bool IsKeyValid(byte[] key)
+    {
+        throw new NotImplementedException();
+    }
+
+    /// <summary>
+    /// Checks if supplied byte array is a valid initalization vector for use in AES cryptographic operation
+    /// </summary>
+    /// <param name="iv">Byte array to be checked</param>
+    /// <returns>Returns <see langword="true"/> if IV is valid, otherwise returns false</returns>
+    public static bool IsInitVectorValid(byte[] iv)
+    {
+        throw new NotImplementedException();
+    }
+    #endregion
 }
