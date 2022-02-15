@@ -14,14 +14,14 @@ public class Aes
     public CipherMode Mode { get; set; }
 
     /// <summary>
-    /// Gets the block size of the cryptographic operation. Call SetBlockSize() to set this property
+    /// Gets the block size of the cryptographic operation. AES has 128-bit blocks by design, and this cannot be changed
     /// </summary>
-    public int BlockSize { get; }
+    public int BlockSize => _aes.BlockSize;
 
     /// <summary>
     /// Gets the feedback size, in bits of the cryptographic operation for <see langword="CipherMode.CFB"/> and <see langword="CipherMode.OFB"/> modes. Call SetFeedbackSize() to set this property
     /// </summary>
-    public int FeedbackSize { get; }
+    public int FeedbackSize => _aes.FeedbackSize;
 
     /// <summary>
     /// Gets the cryptographic key used by this instance. Call SetKey() to set this property
@@ -49,22 +49,6 @@ public class Aes
     /// Sets the IV property (<see langword="Aes.IV"/>) to supplied byte array if byte array is a valid IV, otherwise does nothing
     /// </summary>
     public void SetIV(byte[] iv)
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Sets the BlockSize property (<see langword="Aes.BlockSize"/>) to default block size.
-    /// </summary>
-    public void SetBlockSize()
-    {
-        throw new NotImplementedException();
-    }
-
-    /// <summary>
-    /// Sets the BlockSize property (<see langword="Aes.BlockSize"/>) to supplied number if number is a valid block size, otherwise does nothing
-    /// </summary>
-    public void SetBlockSize(int size)
     {
         throw new NotImplementedException();
     }
