@@ -145,7 +145,13 @@ public class Aes
     /// <returns>Returns the encrypted content (ciphertext) if successful</returns>
     public byte[] Encrypt(byte[] content)
     {
-        throw new NotImplementedException();
+        if (content is null)
+            throw new ArgumentNullException(nameof(content), "Supplied content byte array cannot be null");
+        if (content?.Length < 0)
+            throw new ArgumentOutOfRangeException(nameof(content), "Supplied content byte array cannot be empty");
+
+        ICryptoTransform transform =  _aes.CreateEncryptor();
+        return PerformCryptography(content, transform);
     }
 
     /// <summary>
