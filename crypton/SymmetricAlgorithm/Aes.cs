@@ -183,19 +183,13 @@ public class Aes
     /// </summary>
     /// <param name="key">Byte array to be checked</param>
     /// <returns>Returns <see langword="true"/> if key is valid, otherwise returns false</returns>
-    public static bool IsKeyValid(byte[] key)
-    {
-        throw new NotImplementedException();
-    }
+    public static bool IsKeyValid(byte[] key) => key?.Length is 16 or 24 or 32;
 
     /// <summary>
     /// Checks if supplied byte array is a valid initalization vector for use in AES cryptographic operation
     /// </summary>
     /// <param name="iv">Byte array to be checked</param>
     /// <returns>Returns <see langword="true"/> if IV is valid, otherwise returns false</returns>
-    public static bool IsInitVectorValid(byte[] iv)
-    {
-        throw new NotImplementedException();
-    }
+    public static bool IsInitVectorValid(byte[] iv) => iv?.Length is 16;
     #endregion
 }
