@@ -1,4 +1,6 @@
-﻿namespace crypton.SymmetricAlgorithm;
+﻿using System.Security.Cryptography;
+
+namespace crypton.SymmetricAlgorithm;
 
 public class Aes
 {
@@ -191,5 +193,22 @@ public class Aes
     /// <param name="iv">Byte array to be checked</param>
     /// <returns>Returns <see langword="true"/> if IV is valid, otherwise returns false</returns>
     public static bool IsInitVectorValid(byte[] iv) => iv?.Length is 16;
+    #endregion
+    
+    #region Private Cryptographic Support Methods
+    /// <summary>
+    /// Used to encrypt/decrypt bytes of data. 
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="transform"></param>
+    /// <returns></returns>
+    private static byte[] PerformCryptography(byte[] data, ICryptoTransform transform)
+    {
+        using MemoryStream ms = new();
+        using CryptoStream cs = new(ms, transform, CryptoStreamMode.Write);
+        cs.Write(data, 0, data.Length);
+        cs.FlushFinalBlock();
+        return ms.ToArray();
+    }
     #endregion
 }
