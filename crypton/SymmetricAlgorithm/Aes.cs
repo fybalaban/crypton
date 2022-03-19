@@ -101,17 +101,19 @@ public class Aes
     /// <summary>
     /// Sets the FeedbackSize property (<see langword="Aes.FeedbackSize"/>) to default feedback size.
     /// </summary>
-    public void SetFeedbackSize()
-    {
-        throw new NotImplementedException();
-    }
+    public void SetFeedbackSize() => _aes.FeedbackSize = _aes.BlockSize;
 
     /// <summary>
     /// Sets the FeedbackSize property (<see langword="Aes.FeedbackSize"/>) to supplied number if number is a valid feedback size, otherwise does nothing. Feedback size cannot be bigger than block size
     /// </summary>
     public void SetFeedbackSize(int size)
     {
-        throw new NotImplementedException();
+        if (size <= 0)
+            throw new ArgumentOutOfRangeException(nameof(size), "Feedback size cannot be zero or a negative integer");
+        if (size > BlockSize)
+            throw new ArgumentOutOfRangeException(nameof(size), "Feedback size cannot be greater than block size");
+        _aes.FeedbackSize = size;
+            
     }
     #endregion
 
