@@ -11,7 +11,7 @@ internal static class Primitives
             CipherMode.OFB => System.Security.Cryptography.CipherMode.OFB,
             CipherMode.CFB => System.Security.Cryptography.CipherMode.CFB,
             CipherMode.CTS => System.Security.Cryptography.CipherMode.CTS,
-            _ => throw new System.ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum"),
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum")
         };
     }
 
@@ -24,7 +24,7 @@ internal static class Primitives
             PaddingMode.Zeros => System.Security.Cryptography.PaddingMode.Zeros,
             PaddingMode.ANSIX923 => System.Security.Cryptography.PaddingMode.ANSIX923,
             PaddingMode.ISO10126 => System.Security.Cryptography.PaddingMode.ISO10126,
-            _ => throw new System.ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum")
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum")
         };
     }
 
@@ -37,7 +37,7 @@ internal static class Primitives
             System.Security.Cryptography.CipherMode.OFB => CipherMode.OFB,
             System.Security.Cryptography.CipherMode.CFB => CipherMode.CFB,
             System.Security.Cryptography.CipherMode.CTS => CipherMode.CTS,
-            _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum"),
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum")
         };
     }
 
