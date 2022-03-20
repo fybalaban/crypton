@@ -27,4 +27,17 @@ internal static class Primitives
             _ => throw new System.ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum")
         };
     }
+
+    public static CipherMode ToCrypton(System.Security.Cryptography.CipherMode mode)
+    {
+        return mode switch
+        {
+            System.Security.Cryptography.CipherMode.CBC => CipherMode.CBC,
+            System.Security.Cryptography.CipherMode.ECB => CipherMode.ECB,
+            System.Security.Cryptography.CipherMode.OFB => CipherMode.OFB,
+            System.Security.Cryptography.CipherMode.CFB => CipherMode.CFB,
+            System.Security.Cryptography.CipherMode.CTS => CipherMode.CTS,
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum"),
+        };
+    }
 }
