@@ -40,4 +40,17 @@ internal static class Primitives
             _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum"),
         };
     }
+
+    public static PaddingMode ToCrypton(System.Security.Cryptography.PaddingMode mode)
+    {
+        return mode switch
+        {
+            System.Security.Cryptography.PaddingMode.None => PaddingMode.None,
+            System.Security.Cryptography.PaddingMode.PKCS7 => PaddingMode.PKCS7,
+            System.Security.Cryptography.PaddingMode.Zeros => PaddingMode.Zeros,
+            System.Security.Cryptography.PaddingMode.ANSIX923 => PaddingMode.ANSIX923,
+            System.Security.Cryptography.PaddingMode.ISO10126 => PaddingMode.ISO10126,
+            _ => throw new ArgumentOutOfRangeException(nameof(mode), "Specified integer is not defined as enum")
+        };
+    }
 }
